@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+
+# export DH_VERBOSE=1
+
+# Magic debhelper rule
+%:
+	dh $@
+
+DESTDIR:=$(shell pwd)/debian/tmp
+
+override_dh_auto_test:
+	@echo Tests overriden as not actually implemented / shipped.
+
+override_dh_auto_install:
+	$(MAKE) install prefix=$(DESTDIR)/usr

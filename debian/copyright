@@ -1,0 +1,9 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: makedepf90
+Upstream-Contact: Erik Edelmann
+Source: http://personal.inet.fi/private/erikedelmann/makedepf90
+Files: *
+Copyright: 2006  Erik Edelmann
+License: GPL-2
+A copy  of the license can be found at /usr/share/common-licenses/GPL-2
+

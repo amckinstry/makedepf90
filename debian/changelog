@@ -1,0 +1,5 @@
+makedepf90 (2.8.8-1) unstable; urgency=low
+
+  * Initial release. (Closes: #729814)
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Fri, 15 Nov 2013 19:24:11 +0000
