@@ -1,9 +1,9 @@
-makedepf90 (2.8.8-2) UNRELEASED; urgency=medium
+makedepf90 (2.8.8-2) unstable; urgency=medium
 
   * Standards-Version: 4.1.1; no changes required
   * Now at Debhelper version 10
 
- -- Alastair McKinstry <mckinstry@debian.org>  Tue, 03 Oct 2017 13:31:56 +0100
+ -- Alastair McKinstry <mckinstry@debian.org>  Tue, 03 Oct 2017 16:53:56 +0100
 
 makedepf90 (2.8.8-1) unstable; urgency=low
 
