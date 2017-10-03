@@ -1,3 +1,9 @@
+makedepf90 (2.8.8-2) UNRELEASED; urgency=medium
+
+  * Standards-Version: 4.1.1; no changes required
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Tue, 03 Oct 2017 13:31:56 +0100
+
 makedepf90 (2.8.8-1) unstable; urgency=low
 
   * Initial release. (Closes: #729814)

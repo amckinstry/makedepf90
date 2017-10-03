@@ -3,7 +3,7 @@ Section: utils
 Priority: optional
 Maintainer: Alastair McKinstry <mckinstry@debian.org>
 Build-Depends: debhelper (>= 9)
-Standards-Version: 3.9.4
+Standards-Version: 4.1.1
 Homepage: http://personal.inet.fi/private/erikedelmann/makedepf90
 
 Package: makedepf90
