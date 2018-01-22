@@ -1,6 +1,7 @@
 /* 
  * Copyright (C) 2000-2006 Erik Edelmann <Erik.Edelmann@iki.fi>
  * Copyright (C) 2015 Jason Graham <jason.graham@jhuapl.edu>
+ * Copyright (C) 2018 Alastair McKinstry <mckinstry@debian.org>
  *
  *     This program is free software;  you  can  redistribute  it
  *     and/or modify it under the terms of the GNU General Public
@@ -91,7 +92,7 @@ static const char helpstring[] =
 	"\tdirectory structure as the source files.\n"
     "\n-nosrc\tRemove the explicit dependency on the source file\n"
     "\n-I PATH1:PATH2:...\n\tSearch path(s) for source files\n"
-    "\n\nReport bugs to erik.edelmann@iki.fi\n";
+    "\n\nReport bugs to mckinstry@debian.org\n";
 
 
 static char ver[]="makedepf90 version " VERSION;
@@ -99,6 +100,8 @@ static char ver[]="makedepf90 version " VERSION;
 
 static const char license[]=
     "\nCopyright (C) 2000--2006 Erik Edelmann <Erik.Edelmann@iki.fi>\n"
+    "Copyright (C) 2015 Jason Graham <jason.graham@jhuapl.edu>\n"
+    "Copyright (C) 2018 Alastair McKinstry <mckinstry@debian.org>\n"
     "\n"
     "makedepf90 is free software; you can redistribute it and/or modify\n"
     "it under the terms of the GNU General Public License version 2 as\n"
