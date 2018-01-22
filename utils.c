@@ -1,5 +1,6 @@
 /* 
  * Copyright (C) 2000-2005 Erik Edelmann <Erik.Edelmann@iki.fi>
+ * Copyright (C) 2015 Jason Graham <jason.graham@jhuapl.edu>
  *
  *     This program is free software;  you  can  redistribute  it
  *     and/or modify it under the terms of the GNU General Public
@@ -70,22 +71,27 @@ char *replace_suffix(const char *filename, const char *new_suffix)
 
 
 /* If filename has no path, append 'path' to the beginning of the filename,
- * else replace the existing path (everything before the first '/') with 'path'.
+ * else replace the existing path if 'mirror=false' (everything before the first '/') with 'path' or
+ * prepend 'path' in the case that 'mirror=true'
  */
 
-char *set_path(const char *filename, const char *path)
+char *set_path(const char *filename, const char *path, const bool mirror)
 {
     char *rs;
     int fl, n, pl, nl;
 
     pl = strlen(path);
 
+
     fl = n = strlen(filename);
-    while (filename[n] != '/' && n >= 0)  n--;
+    if( !mirror )
+        while (filename[n] != '/' && n >= 0)  n--;
+    else
+        n=-1;
     nl = fl - n - 1;
 
     if (n == -1) {
-        /* if there was no '/' */
+        /* if there was no '/' or 'mirror=true' */
         rs = (char *)xmalloc((fl+pl+2)*sizeof(char));
         strcpy(rs, path);
         strcat(rs, filename);

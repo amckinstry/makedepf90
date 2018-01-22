@@ -1,5 +1,6 @@
 .\"
 .\"    Copyright (C) 2000--2003 Erik Edelmann <eedelman@acclab.helsinki.fi>
+.\"    Copyright (C) 2015 Jason Graham <jason.graham@jhuapl.edu>
 .\"
 .\"    This program is free software;  you  can  redistribute  it
 .\"    and/or modify it under the terms of the GNU General Public
@@ -18,7 +19,7 @@
 .\"    Boston, MA  02111-1307  USA
 .\"
 .\" $Format: ".TH makedepf90 1 \"$Date$\""$
-.TH makedepf90 1 "Thu, 06 Dec 2001 23:28:54 +0200"
+.TH makedepf90 1 "Tue, 17 Nov 2015 23:21:02 -0500"
 
 .SH NAME
 makedepf90 \- creates Makefile dependency list for Fortran source files.
@@ -45,7 +46,7 @@ makedepf90 \- creates Makefile dependency list for Fortran source files.
 .RB [ \-coco ]
 .RB [ \-D
 .IR NAME ]
-.RB [ \-b
+.RB [ \-b | \-B
 .IR "path" ]
 .RB [ \-I
 .IR "PATH1:PATH2:..." ]
@@ -210,6 +211,12 @@ Define the pre-processor symbol \fINAME\fP.
 Dependency tree and link rule will assume objects are placed in \fIpath\fP.
 This is useful if the build places object files in a different directory than
 the source files.
+.TP
+.BI \-B " path"
+Dependency tree and link rule will assume objects are placed in \fIpath\fP using
+the same directory structure as the source files. This is useful if the build
+places object files in a different directory than the source files and the
+source directory structure is needed to avoid object name collisions.
 .TP
 .BI \-I " list-of-paths"
 Look for source/include files in the \fIlist-of-paths\fP, if not found in

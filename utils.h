@@ -1,5 +1,6 @@
 /* 
  * Copyright (C) 2000-2005 Erik Edelmann <Erik.Edelmann@iki.fi>
+ * Copyright (C) 2015 Jason Graham <jason.graham@jhuapl.edu>
  *
  *     This program is free software;  you  can  redistribute  it
  *     and/or modify it under the terms of the GNU General Public
@@ -21,7 +22,7 @@
 #define UTILS_H_
 
 char *replace_suffix (const char *filename, const char *new_suffix);
-char *set_path (const char *filename, const char *path);
+char *set_path (const char *filename, const char *path, const bool mirror);
 char *remove_citation (const char *s);
 char *expand_rule(const char *rule, const char *srcfile);
 FILE *open_src_file (const char *fname, const List *path);
