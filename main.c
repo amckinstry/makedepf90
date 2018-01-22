@@ -1,5 +1,6 @@
 /* 
  * Copyright (C) 2000-2006 Erik Edelmann <Erik.Edelmann@iki.fi>
+ * Copyright (C) 2015 Jason Graham <jason.graham@jhuapl.edu>
  *
  *     This program is free software;  you  can  redistribute  it
  *     and/or modify it under the terms of the GNU General Public
@@ -86,6 +87,8 @@ static const char helpstring[] =
     "\n-coco\tLook for coco set-files.  Implies '-free'.\n"
     "\n-D NAME\tDefine pre-processor symbol 'NAME'\n"
     "\n-b PATH\tAssume object files are placed in PATH.\n"
+    "\n-B PATH\tAssume object files are placed in PATH using the same\n"
+	"\tdirectory structure as the source files.\n"
     "\n-nosrc\tRemove the explicit dependency on the source file\n"
     "\n-I PATH1:PATH2:...\n\tSearch path(s) for source files\n"
     "\n\nReport bugs to erik.edelmann@iki.fi\n";
@@ -143,6 +146,7 @@ int main (int argc, char **argv)
     options.link_rule = (char *)LINK_RULE_DEFAULT;
     options.coco = false;
     options.obj_dir_set = false;
+    options.obj_dir_mirror = false;
     options.obj_dir = "";
     options.src_dep = true;
     options.ignore_mods = NULL;
@@ -279,9 +283,18 @@ int main (int argc, char **argv)
             if (!list_find(macrolist, mac, &macrocmp))
                 macrolist = list_prepend(macrolist, mac);
 
-        } else if (strncmp(argv[i], "-b", 2) == 0) {
+        } else if (strncmp(argv[i], "-b", 2) == 0 ||
+		   strncmp(argv[i], "-B", 2) == 0 ) {
+	
+            /* Construct custom error message */
+            char err_msg[32];
+	    char _argv[3];
+	    
+	    strncpy(_argv,argv[i],2); _argv[2]='\0';
+	    snprintf(err_msg,sizeof(err_msg),"Option '%s' needs argument",_argv);
+
             if (strlen(argv[i]) == 2) {
-                if (i == argc - 1) fatal_error("Option '-b' needs argument");
+                if (i == argc - 1) fatal_error(err_msg);
                 options.obj_dir = xstrdup(argv[++i]);
             } else
                 if (argv[i][2] == '=') {
@@ -295,7 +308,11 @@ int main (int argc, char **argv)
                 strcat(options.obj_dir, "/");
             }
 
-            options.obj_dir_set = true;
+	    options.obj_dir_set = true;
+	    /* Have to compare with '_argv' since 'i' may be modified above */
+	    if(strncmp(_argv, "-B", 2) == 0) {
+		    options.obj_dir_mirror = true;
+	    }
 
         } else if (strncmp(argv[i], "-I", 2) == 0) {
             int jp;
@@ -386,7 +403,7 @@ int main (int argc, char **argv)
         printf("FOBJ=");
         for (h1 = obj; h1; h1 = h1->next)
             if (options.obj_dir_set)
-                printf("%s ", set_path(h1->data, options.obj_dir));
+	        printf("%s ", set_path(h1->data, options.obj_dir, options.obj_dir_mirror));
             else
                 printf("%s ", (char *)h1->data);
         printf("\n\n%s: $(FOBJ)\n\t%s\n\n", options.exe_name,options.link_rule);
@@ -405,8 +422,8 @@ int main (int argc, char **argv)
         /* Targets */
         for (h2 = dep->targets; h2; h2 = h2->next)  
             if (options.obj_dir_set)
-                printf("%s ", set_path(h2->data, options.obj_dir));
-            else
+	        printf("%s ", set_path(h2->data, options.obj_dir, options.obj_dir_mirror));
+	    else
                 printf("%s ", (char *)h2->data);
 
         printf(": ");;
@@ -433,7 +450,7 @@ int main (int argc, char **argv)
                 } else {
                     if (options.obj_dir_set)
                         printf("%s ", 
-                               set_path(mod->modfile_name, options.obj_dir));
+                            set_path(mod->modfile_name, options.obj_dir, options.obj_dir_mirror));
                     else
                         printf("%s ", mod->modfile_name);
                 }

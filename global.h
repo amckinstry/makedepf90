@@ -1,5 +1,6 @@
 /* 
  * Copyright (C) 2000-2005 Erik Edelmann <Erik.Edelmann@iki.fi>
+ * Copyright (C) 2015 Jason Graham <jason.graham@jhuapl.edu>
  *
  *     This program is free software;  you  can  redistribute  it
  *     and/or modify it under the terms of the GNU General Public
@@ -68,6 +69,8 @@ typedef struct {
     char *link_rule;    
     bool coco;          /* Look for coco set-files */
     bool obj_dir_set;  /* Option -b obj_dir was used */
+    bool obj_dir_mirror;  /* Option -B obj_dir was used; turns on
+			     mirroring of src directory structure */
     char *obj_dir;      /* Directory set by option -b */
     bool src_dep;       /* List the source file in the dependencys */
     bool src_path_set;  /* option -I was used */
