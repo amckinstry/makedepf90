@@ -47,7 +47,7 @@
 #define MODFILE_FMT_DEFAULT "%f.o"
 #define MAX_STRING_LEN 8192    
 #define INCLUDE_RECURSION_LIMIT 15
-#define RULE_LENGTH 256
+#define RULE_LENGTH 1024
 #define LINK_RULE_DEFAULT "$(FC) -o $@ $(FFLAGS) $(LDFLAGS) $(FOBJ) $(LIBS)"
 
 typedef enum {false = 0, true = 1} bool;
